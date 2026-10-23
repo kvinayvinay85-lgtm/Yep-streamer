@@ -1,0 +1,87 @@
+import { MasterFeatureItem } from './masterFeatures101to200';
+
+export const MASTER_FEATURES_201_TO_500: Record<number, MasterFeatureItem> = {
+  209: { name: "Character Voice-to-Name Mapping", category: "Advanced Subtitle Intelligence (209-225)", description: "Maps speaker voice characteristics across scenes to character names for accurate captions." },
+  210: { name: "Overlapping Dialogue Separation", category: "Advanced Subtitle Intelligence (209-225)", description: "Separates overlapping voices to render multi-speaker captions accurately." },
+  211: { name: "Whispered Speech Recovery", category: "Advanced Subtitle Intelligence (209-225)", description: "Enhances low-volume whisper audio for speech recognition and caption generation." },
+  212: { name: "Background-Noise Speech Recovery", category: "Advanced Subtitle Intelligence (209-225)", description: "Isolates speech from background ambient noise for clear transcription." },
+  213: { name: "Subtitle Timing Auto-Repair", category: "Advanced Subtitle Intelligence (209-225)", description: "Aligns subtitle timestamps with audio waveforms to fix lip sync drift." },
+  214: { name: "Multi-Speaker Subtitle Layout", category: "Advanced Subtitle Intelligence (209-225)", description: "Optimizes visual layout for multi-party conversations." },
+  215: { name: "Subtitle Ambiguity Detector", category: "Advanced Subtitle Intelligence (209-225)", description: "Identifies ambiguous sentences in translation to prevent context errors." },
+  216: { name: "Idiom-Aware Translation", category: "Advanced Subtitle Intelligence (209-225)", description: "Translates idioms and proverbs contextually rather than word-for-word." },
+  217: { name: "Slang and Dialect Recognition", category: "Advanced Subtitle Intelligence (209-225)", description: "Recognizes regional dialects and slang terms for localized captions." },
+  218: { name: "Subtitle Profanity Preference Filter", category: "Advanced Subtitle Intelligence (209-225)", description: "Filters profanity in captions according to user preferences." },
+  219: { name: "Subtitle Complexity Personalizer", category: "Advanced Subtitle Intelligence (209-225)", description: "Simplifies subtitle vocabulary for language learners or young viewers." },
+  220: { name: "Language Learning Subtitle Mode", category: "Advanced Subtitle Intelligence (209-225)", description: "Displays dual-language subtitles simultaneously for learning." },
+  221: { name: "Word-Level Subtitle Highlighting", category: "Advanced Subtitle Intelligence (209-225)", description: "Highlights spoken words in real time as audio plays." },
+  222: { name: "Vocabulary Bookmark Generator", category: "Advanced Subtitle Intelligence (209-225)", description: "Extracts key vocabulary words into a personal learning list." },
+  223: { name: "Subtitle Grammar Quality Scorer", category: "Advanced Subtitle Intelligence (209-225)", description: "Scores grammar accuracy in generated subtitles prior to release." },
+  224: { name: "Subtitle Version Comparison", category: "Advanced Subtitle Intelligence (209-225)", description: "Compares differences in timing and text between subtitle revisions." },
+  225: { name: "Subtitle Quality Confidence Score", category: "Advanced Subtitle Intelligence (209-225)", description: "Calculates confidence scores to flag segments needing human review." },
+
+  226: { name: "Automatic Language Switching Detection", category: "Multilingual Audio & Accessibility (226-250)", description: "Detects mid-scene spoken language switches in multilingual media." },
+  227: { name: "Code-Switching Transcript Engine", category: "Multilingual Audio & Accessibility (226-250)", description: "Transcribes code-switched dialogues (e.g. Tenglish/Hinglish)." },
+  228: { name: "Regional Pronunciation Normalizer", category: "Multilingual Audio & Accessibility (226-250)", description: "Normalizes regional accent pronunciations to standard spelling." },
+  229: { name: "Transliteration Subtitle Option", category: "Multilingual Audio & Accessibility (226-250)", description: "Displays Telugu spoken words in Roman script or transliterated script." },
+  230: { name: "Script Preference Manager", category: "Multilingual Audio & Accessibility (226-250)", description: "Allows viewers to choose script preference independently of language." },
+  231: { name: "Dubbed-Audio Lip-Sync Analyzer", category: "Multilingual Audio & Accessibility (226-250)", description: "Measures lip-sync alignment between dubbed audio and video frames." },
+  232: { name: "AI Dubbing Pronunciation Checker", category: "Multilingual Audio & Accessibility (226-250)", description: "Verifies pronunciation of character names in dubbed tracks." },
+  233: { name: "Voice Style Consistency Checker", category: "Multilingual Audio & Accessibility (226-250)", description: "Ensures voice actor tonal consistency across episodes." },
+  234: { name: "Audio Description Generator", category: "Multilingual Audio & Accessibility (226-250)", description: "Generates spoken scene descriptions for visually impaired viewers." },
+  235: { name: "Audio Description Timing Optimizer", category: "Multilingual Audio & Accessibility (226-250)", description: "Inserts audio descriptions during speech gaps without overlapping dialogue." },
+  236: { name: "Sound-Event Caption Generator", category: "Multilingual Audio & Accessibility (226-250)", description: "Captions sound effects (applause, door knock, explosion) for deaf viewers." },
+  237: { name: "Music and Lyric Caption Separation", category: "Multilingual Audio & Accessibility (226-250)", description: "Separates song lyrics from background music descriptions." },
+  238: { name: "Caption Reading-Time Optimizer", category: "Multilingual Audio & Accessibility (226-250)", description: "Adjusts caption display duration based on reading speed." },
+  239: { name: "Personalized Caption Appearance", category: "Multilingual Audio & Accessibility (226-250)", description: "Saves font size, contrast, and color options across devices." },
+  240: { name: "Subtitle Safe-Area Validator", category: "Multilingual Audio & Accessibility (226-250)", description: "Ensures captions do not obscure face details or player UI controls." },
+  241: { name: "Accessibility Track Auto-Selector", category: "Multilingual Audio & Accessibility (226-250)", description: "Auto-selects preferred accessibility tracks based on user profile." },
+  242: { name: "Speech Pace Adaptation", category: "Multilingual Audio & Accessibility (226-250)", description: "Adapts speech pace without pitch distortion during slowed playback." },
+  243: { name: "Multilingual Search by Spoken Phrase", category: "Multilingual Audio & Accessibility (226-250)", description: "Searches spoken dialogues across multiple translated audio tracks." },
+  244: { name: "Dialogue Meaning Search", category: "Multilingual Audio & Accessibility (226-250)", description: "Searches scenes by dialogue meaning even without exact keyword matches." },
+  245: { name: "Subtitle Copyright and License Tracker", category: "Multilingual Audio & Accessibility (226-250)", description: "Tracks translation license rights and subtitle file ownership." },
+  246: { name: "Translation Glossary Auto-Builder", category: "Multilingual Audio & Accessibility (226-250)", description: "Builds character and fictional term glossaries for series consistency." },
+  247: { name: "Subtitle Review Priority Queue", category: "Multilingual Audio & Accessibility (226-250)", description: "Prioritizes low-confidence subtitle segments for editor review." },
+  248: { name: "Translation Change Impact Analyzer", category: "Multilingual Audio & Accessibility (226-250)", description: "Identifies affected episodes when a glossary term is modified." },
+  249: { name: "Multilingual Release Readiness Checker", category: "Multilingual Audio & Accessibility (226-250)", description: "Validates all language packages before title premiere." },
+  250: { name: "Language Quality Analytics Dashboard", category: "Multilingual Audio & Accessibility (226-250)", description: "Tracks error rates and translation quality across all languages." },
+
+  251: { name: "Session-Level Delivery Diagnosis", category: "Intelligent Streaming Delivery (251-275)", description: "Diagnoses causes of buffering or startup delays per session." },
+  252: { name: "Delivery Error Root-Cause Correlator", category: "Intelligent Streaming Delivery (251-275)", description: "Correlates CDN errors, manifest failures, and player events." },
+  253: { name: "Manifest Integrity Validator", category: "Intelligent Streaming Delivery (251-275)", description: "Validates HLS/DASH manifests for structural errors and broken segment URLs." },
+  254: { name: "Segment Sequence Consistency Checker", category: "Intelligent Streaming Delivery (251-275)", description: "Checks video segment sequences for missing gaps or incorrect timestamps." },
+  255: { name: "Cross-Rendition Alignment Checker", category: "Intelligent Streaming Delivery (251-275)", description: "Verifies segment timing alignment across quality renditions." },
+  256: { name: "Playback Compatibility Predictor", category: "Intelligent Streaming Delivery (251-275)", description: "Predicts device/browser compatibility risks prior to stream playback." },
+  257: { name: "Codec Configuration Validator", category: "Intelligent Streaming Delivery (251-275)", description: "Validates codec profiles and levels against device capability matrices." },
+  258: { name: "Encryption Key Availability Monitor", category: "Intelligent Streaming Delivery (251-275)", description: "Monitors DRM license service health and key availability." },
+  259: { name: "License Request Latency Analyzer", category: "Intelligent Streaming Delivery (251-275)", description: "Analyzes DRM license request latency by region and network." },
+  260: { name: "Playback Startup Phase Analyzer", category: "Intelligent Streaming Delivery (251-275)", description: "Measures startup duration across player init, manifest, license, and first frame." },
+
+  301: { name: "Dynamic Viewer Interest Graph", category: "Personalized Streaming Experience (301-320)", description: "Builds a personal interest graph based on genres, themes, and directors." },
+  302: { name: "Mood-to-Content Matching", category: "Personalized Streaming Experience (301-320)", description: "Matches movies and series to user's selected current mood." },
+  303: { name: "Available-Time Recommendation", category: "Personalized Streaming Experience (301-320)", description: "Recommends content based on available time window (e.g. 15m, 45m, 2h)." },
+  304: { name: "Viewing Intent Classifier", category: "Personalized Streaming Experience (301-320)", description: "Classifies whether viewer wants binge-watching, quick clip, or family movie." },
+
+  321: { name: "Natural-Language Content Search", category: "Intelligent Search & Semantic Discovery (321-340)", description: "Searches library using conversational phrases (e.g., 'mystery series with twist ending')." },
+  322: { name: "Semantic Scene Search", category: "Intelligent Search & Semantic Discovery (321-340)", description: "Finds specific video scenes matching natural descriptions." },
+  323: { name: "Plot-Description Search", category: "Intelligent Search & Semantic Discovery (321-340)", description: "Finds movies by plot descriptions even when title is forgotten." },
+  324: { name: "Character Relationship Search", category: "Intelligent Search & Semantic Discovery (321-340)", description: "Searches titles based on character dynamics and relationships." },
+  325: { name: "Quote-Based Dialogue Search", category: "Intelligent Search & Semantic Discovery (321-340)", description: "Finds exact movies or series episodes using famous dialogue quotes." },
+
+  341: { name: "Automatic Content Tag Verification", category: "Smarter Content Metadata (341-360)", description: "Verifies accuracy of assigned genre, theme, and rating tags." },
+  342: { name: "Duplicate Title Version Detector", category: "Smarter Content Metadata (341-360)", description: "Identifies duplicate catalog entries to keep search results clean." },
+
+  361: { name: "Age-Appropriate Profile Recommendation Filter", category: "Safe and Responsible Viewing (361-380)", description: "Filters out unsuitable titles for child profiles based on age settings." },
+  362: { name: "Sensitive Theme Warning Labels", category: "Safe and Responsible Viewing (361-380)", description: "Displays warning labels for sensitive themes based on verified metadata." },
+
+  401: { name: "Interactive Story Choice Engine", category: "Interactive & Augmented Media (401-420)", description: "Enables interactive branching choices during storytelling." },
+  402: { name: "Choice-Aware Resume", category: "Interactive & Augmented Media (401-420)", description: "Resumes interactive stories keeping chosen narrative path intact." },
+
+  421: { name: "Live Event Highlight Marker", category: "Live Events and Social Viewing (421-440)", description: "Marks key highlight moments during live broadcast events." },
+
+  441: { name: "Creator Asset Intake Assistant", category: "Intelligent Content Production Tools (441-460)", description: "Scans uploaded media assets and creates onboarding inventories." },
+
+  461: { name: "Subscription Plan Comparison Assistant", category: "Revenue and Subscription Tools (461-480)", description: "Compares features, devices, and resolutions across plans." },
+
+  481: { name: "Personal Streaming Concierge", category: "Advanced Autonomous Platform (481-500)", description: "Conversational assistant for discovering titles, managing watchlists, and playing media." },
+  500: { name: "Unified AI Streaming Intelligence Platform", category: "Advanced Autonomous Platform (481-500)", description: "Integrates discovery, playback quality, catalog, monetization, and reliability into one engine." }
+};

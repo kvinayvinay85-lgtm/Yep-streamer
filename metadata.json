@@ -1,0 +1,6 @@
+{
+  "name": "YEP Streamer",
+  "description": "Professional streaming platform with Cinema, Anime, Drama & Reels library, secure admin panel, and media upload management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

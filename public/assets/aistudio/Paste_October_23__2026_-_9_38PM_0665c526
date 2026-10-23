@@ -1,0 +1,504 @@
+Update the Admin UploadWizard to include a dedicated file picker for poster and backdrop images that displays a thumbnail gallery preview before submission, replacing generic URL fields.# YepStreamer — Category-Based Upload System, Seasons, Episodes & Anime Simulcast Scheduler
+
+## 1. Categories & Genre Sub-Categories
+
+Create a fully functional **Categories & Genre Sub-Categories** section in the YepStreamer admin dashboard.
+
+Display the following main categories as selectable cards or menu items:
+
+1. **Cinema Movies**
+2. **Anime & Series**
+3. **Drama Titles**
+4. **Reels — 9:16 Clips**
+5. **Anime Simulcast Scheduler**
+
+When an administrator clicks any category, open its dedicated upload interface with the appropriate fields and upload options. The interface should be professional, responsive, and consistent with the existing YepStreamer admin dashboard.
+
+Do not make these categories decorative or static. Every category must open a functional upload workflow.
+
+## 2. Cinema Movies — Upload Interface
+
+When the admin clicks **Cinema Movies**, open a movie upload page with the following fields:
+
+- Movie title
+- Original title
+- Movie poster and backdrop image
+- Description and synopsis
+- Genre and sub-genre selection
+- Release year and release date
+- Language and available audio tracks
+- Subtitles and subtitle languages
+- Age rating and content advisory
+- Video file upload
+- Trailer upload or trailer URL
+- Cast and crew
+- Runtime
+- Tags and search keywords
+- Publication status: Draft, Processing, Scheduled, or Published
+- Publish date and time
+- Featured movie toggle
+
+Provide buttons for **Upload Movie**, **Save Draft**, **Preview**, and **Publish**.
+
+After a successful upload and publication, make the movie available in the shared YepStreamer catalog for all authorized users.
+
+## 3. Anime & Series — Series and Season Management
+
+When the admin clicks **Anime & Series**, open a dedicated series management interface.
+
+### A. Create a Series
+
+Provide these fields:
+
+- Series title and original title
+- Poster, banner, and backdrop
+- Synopsis and description
+- Genre and sub-genre
+- Country or region of origin
+- Original language
+- Available audio languages and subtitles
+- Release year
+- Series type: Anime, Animated Series, or Live-Action Series
+- Release status: Upcoming, Ongoing, Completed, or Hiatus
+- Age rating
+- Tags and search keywords
+- Featured series option
+
+Buttons: **Create Series**, **Save Draft**, and **Manage Seasons**.
+
+### B. Add and Manage Seasons
+
+Inside each series, provide a dedicated **Seasons** section.
+
+Allow the administrator to:
+
+- Add Season 1, Season 2, Season 3, and additional seasons.
+- Set a custom season number and season title.
+- Add a season poster and description.
+- Set the season release date and status.
+- Edit season metadata without changing the existing episodes.
+- View the total episode count for each season.
+- Open any season to manage its episodes.
+- Support special episodes, OVAs, and bonus episodes when applicable.
+
+Use the structure:
+
+**Series → Season → Episodes**
+
+For example:
+
+Anime Series → Season 1 → Episodes 1–12  
+Anime Series → Season 2 → Episodes 1–12
+
+Do not create a new series for every season or episode.
+
+### C. Upload New Episodes
+
+Inside each season, include an **Add Episode / Upload Episode** button.
+
+When clicked, open an episode upload form containing:
+
+- Series name — automatically linked to the selected series
+- Season — automatically linked to the selected season
+- Episode number
+- Episode title
+- Episode description
+- Episode thumbnail
+- Video file upload
+- Episode runtime
+- Release date and time
+- Audio language and subtitle selection
+- Intro and outro skip timestamps, if available
+- Recap or special episode designation
+- Episode visibility and publication status
+- Optional trailer or preview clip
+
+Provide these actions:
+
+- **Upload Episode**
+- **Save Draft**
+- **Preview Episode**
+- **Publish Now**
+- **Schedule Release**
+
+Automatically maintain the correct episode order. Allow authorized admins to edit episode metadata and reorder episodes without breaking their video storage references.
+
+### D. Bulk Episode Upload
+
+Add a bulk upload workflow for administrators who need to upload multiple episodes.
+
+- Select the target series and season.
+- Upload multiple video files.
+- Enter or map episode numbers and titles.
+- Preview the file-to-episode mapping before confirming.
+- Show individual upload progress and processing status.
+- Allow failed uploads to be retried without uploading successful files again.
+- Detect likely duplicate files and warn the administrator before creating duplicates.
+- Save valid episodes against the correct series and season.
+
+Do not publish incomplete or unprocessed videos.
+
+## 4. Drama Titles — Drama and Episode Management
+
+When the admin clicks **Drama Titles**, open a dedicated drama upload interface.
+
+Support both standalone drama movies and episodic drama series.
+
+### For Standalone Dramas
+
+Provide title, poster, synopsis, genre, language, subtitles, video upload, release date, runtime, age rating, and publication settings.
+
+### For Episodic Dramas
+
+Provide:
+
+- Create Drama Series
+- Add Season
+- Add Episode
+- Upload New Episode
+- Bulk Upload Episodes
+- Edit Episode Details
+- Schedule Episode Release
+- Preview Before Publishing
+- View All Seasons and Episodes
+
+Use the same organized hierarchy:
+
+**Drama Series → Season → Episodes**
+
+Allow dramas that have no seasons to use a simple episode list if needed. Keep episode numbering and release order configurable for different drama formats.
+
+## 5. Reels — 9:16 Clips Upload
+
+When the admin clicks **Reels — 9:16 Clips**, open a dedicated vertical-video upload interface.
+
+Provide:
+
+- Reel title and description
+- Vertical video file upload
+- Preferred 9:16 aspect ratio validation
+- Automatic thumbnail generation
+- Custom thumbnail selection
+- Duration and resolution information
+- Language and subtitles
+- Genre, tags, and keywords
+- Optional linked movie, anime, series, or drama
+- Publication status and scheduling
+- Preview in a vertical mobile-style player
+
+Support compatible video files and provide a clear warning if a video is not in the preferred vertical format. Do not crop or overwrite the original file without explicit configuration.
+
+Published reels should appear in the YepStreamer Reels feed for all authorized users.
+
+## 6. Anime Simulcast Scheduler
+
+When the admin clicks **Anime Simulcast Scheduler**, open a dedicated scheduling dashboard.
+
+Provide:
+
+- Select an existing anime series
+- Select season
+- Select episode number
+- Upload the episode in advance
+- Set the original release date and time
+- Select the intended time zone
+- Configure a countdown or upcoming-release display
+- Set the publication schedule
+- Preview the episode page before release
+- View scheduled, processing, published, and failed episodes
+- Edit a schedule before its release
+- Retry failed processing or publishing jobs
+- Display the next scheduled episode for each series
+
+### Automatic Publishing Workflow
+
+1. The administrator uploads an episode.
+2. The system validates and stores the original file.
+3. The system processes the episode into supported playback formats.
+4. The administrator confirms the title, season, episode number, and release schedule.
+5. The system keeps the episode unpublished until its configured release time.
+6. At the scheduled time, the backend publishing job checks that processing is complete and that the episode is authorized for release.
+7. The episode becomes available in the shared catalog and on its series page.
+8. The scheduler records the publishing result and reports failures to the admin.
+
+Use a reliable server-side job scheduler rather than relying on the administrator's browser to remain open. Handle time zones and daylight-saving changes correctly.
+
+Only schedule content that YepStreamer is authorized to distribute, and respect applicable licensing windows and regional restrictions.
+
+## 7. Shared Catalog and User Experience
+
+Once content is published, make it visible to all authorized YepStreamer users through the shared catalog.
+
+- Cinema movies appear in the Movies section.
+- Anime series appear in Anime & Series.
+- Drama series appear in Drama Titles.
+- Vertical clips appear in Reels.
+- Anime episodes appear under their correct series and season.
+- Scheduled episodes appear as upcoming content until release.
+- Newly published episodes update the relevant series page and episode list.
+- Each user maintains their own watch history, favorites, progress, and recommendations.
+
+Use one centralized content record for each movie, series, season, episode, or reel. Do not create separate copies for each user.
+
+## 8. Permanent Storage and Video Protection
+
+Maintain the existing YepStreamer permanent-storage requirement.
+
+- Store uploaded originals in durable persistent object storage.
+- Store metadata and series/season/episode relationships in the persistent database.
+- Preserve original files through transcoding, thumbnail generation, redeployment, and routine maintenance.
+- Do not add ordinary delete or remove buttons for successfully uploaded videos.
+- Prevent backend services from deleting or overwriting originals during routine operations.
+- Support storage versioning, backups, integrity checks, and recovery.
+- If processing fails, retain the original file and allow processing to be retried.
+- Keep storage references stable when titles, season metadata, or episode descriptions are edited.
+
+Do not claim absolute permanence; use redundancy and tested backups to minimize data-loss risk.
+
+## 9. Admin Interface and Permissions
+
+- Integrate these workflows into the existing admin dashboard.
+- Preserve all current upload functionality and unrelated settings.
+- Use clear category navigation, searchable lists, filters, status labels, and pagination.
+- Allow only authorized administrators to create, upload, schedule, and publish content.
+- Validate permissions on the backend, not only in the frontend.
+- Do not allow regular users to upload or modify official catalog content.
+- Show progress, errors, processing status, and retry actions clearly.
+
+## 10. Required Database Relationships
+
+Implement a reliable content model that supports:
+
+- Content item
+- Category and genre
+- Series
+- Season
+- Episode
+- Original video asset
+- Processed streaming assets
+- Thumbnail and artwork
+- Subtitle and audio tracks
+- Publication status
+- Scheduled release time and time zone
+- Upload and processing job status
+
+Each episode must reference the correct series and season. Each video asset must reference its corresponding content record through a stable identifier.
+
+Use database constraints and server-side validation to prevent invalid season or episode relationships.
+
+## 11. Acceptance Tests
+
+Verify the following before marking the feature complete:
+
+1. Clicking each of the five categories opens the correct upload interface.
+2. Cinema Movies supports movie uploads and publication.
+3. Anime & Series supports series creation, seasons, and episode uploads.
+4. Drama Titles supports standalone dramas and episodic drama series.
+5. Reels supports vertical-video uploads and previews.
+6. Anime Simulcast Scheduler supports scheduled episode releases.
+7. Multiple episodes can be uploaded with correct episode numbering.
+8. A new episode appears under the correct series and season after publication.
+9. Scheduled episodes remain unavailable for normal playback until their release time.
+10. Publishing works without the admin keeping the browser open.
+11. Uploaded originals remain stored after restarts and redeployments.
+12. All authorized users see the same published catalog.
+13. Existing admin upload features continue working.
+14. Unauthorized users cannot upload or modify official content.
+15. Failed processing and upload jobs can be retried without losing original files.
+
+## Final Implementation Instruction
+
+Build these as fully functional, backend-connected features inside the existing YepStreamer website. Do not implement dummy buttons, static mockups, or simulated uploads. Preserve existing functionality, test every workflow end-to-end, and clearly report any external storage, authentication, scheduling, or infrastructure configuration that is still required.# YepStreamer — Permanent Video Storage, Global Publishing & Zero-Auto-Deletion Master Prompt
+
+## 1. Critical Objective
+
+Fix the existing YepStreamer platform so that every successfully uploaded and published video is stored persistently and remains available to all authorized users, regardless of who uploaded it.
+
+The platform must behave like a centralized streaming service similar to Netflix and Crunchyroll.
+
+**Mandatory rule: An uploaded video must never disappear simply because the uploader logs out, leaves the website, closes their browser, refreshes a page, or because the website is updated, redeployed, or restarted.**
+
+Do not merely modify the frontend. Investigate and fix the complete upload-to-storage-to-database-to-publishing-to-playback workflow.
+
+## 2. Diagnose and Fix the Existing Problem First
+
+Before changing the website, inspect the current implementation and identify why videos disappear or are visible only to the uploader.
+
+Check:
+
+- Whether video files are stored in temporary server directories or browser memory.
+- Whether uploaded files disappear after server restarts or application redeployments.
+- Whether the database is using temporary, local, or nonpersistent storage.
+- Whether video metadata is saved only in frontend state or local browser storage.
+- Whether the uploaded video is linked to the uploader's private account instead of the shared catalog.
+- Whether the public catalog query incorrectly filters videos by the current user's ID.
+- Whether publication status is saved permanently in the database.
+- Whether storage URLs expire or point to unavailable files.
+- Whether frontend routes or environment changes break existing video references.
+- Whether background cleanup jobs, retention policies, or storage lifecycle rules delete videos.
+- Whether authentication rules prevent other authorized users from viewing published videos.
+- Whether deployment configuration resets the database or overwrites persistent data.
+
+Fix the underlying causes instead of adding temporary workarounds.
+
+## 3. Permanent Original Video Storage
+
+Store every successfully uploaded original video in durable, persistent object storage or an equivalent production-grade storage system.
+
+Requirements:
+
+- Never store the only copy of a video in browser memory, temporary folders, ephemeral containers, or temporary server filesystems.
+- Keep original video files separate from application code and deployment artifacts.
+- Use stable, unique asset IDs and persistent storage keys.
+- Store file metadata, storage references, upload status, and publication status in a persistent database.
+- Verify that the file has been fully uploaded and stored before marking the upload as successful.
+- Use file integrity checks to detect incomplete or corrupted uploads.
+- Preserve original files when generating thumbnails, subtitles, transcoded versions, or adaptive streaming renditions.
+- Keep video storage independent of frontend rebuilds, application updates, and server restarts.
+- Enable storage versioning, appropriate redundancy, backups, and tested recovery procedures.
+- Do not automatically overwrite existing original files when a video with the same title is uploaded.
+
+## 4. No Automatic Video Deletion
+
+Implement a strict **No-Automatic-Deletion Policy**.
+
+- Do not automatically delete or remove successfully uploaded video files.
+- Do not delete videos when users log out, leave the website, close their browsers, or clear their browsing data.
+- Do not delete video files when the application restarts, updates, redeploys, or changes its frontend.
+- Do not remove originals after transcoding or thumbnail generation.
+- Do not let routine maintenance or cache-clearing jobs delete original video assets.
+- Disable storage lifecycle rules that would expire published originals or processed streaming assets unintentionally.
+- Do not add ordinary delete-video or remove-video actions to the existing admin upload workflow.
+- Prevent unauthorized backend services from deleting or overwriting stored originals.
+- Keep videos that fail processing and allow the administrator to retry processing without re-uploading the original.
+- If a file is temporarily unavailable, show a recoverable error and retain its database record and storage reference.
+- Never silently remove catalog entries because of a temporary storage, network, or processing failure.
+
+If a legal obligation requires content removal, handle it through a separately authorized compliance process with appropriate records and safeguards.
+
+## 5. Shared Global Video Catalog
+
+Implement one centralized catalog for all published YepStreamer content.
+
+When any authorized uploader uploads and publishes a video:
+
+1. Save the original video in persistent storage.
+2. Save the video metadata in the central database.
+3. Associate the video with its category, title, description, and other metadata.
+4. Set the publication status to `published` only after the required upload and processing checks succeed.
+5. Make the published video discoverable by all authorized users.
+6. Display it in the correct homepage section and content category.
+7. Ensure the catalog uses the same persistent records across all user accounts and devices.
+
+**Critical fix:** Do not restrict published videos to the uploader's user ID. Separate upload ownership and administrative permissions from catalog visibility.
+
+For example, if User A uploads and publishes a video, Users B, C, D, and all other authorized users must be able to discover and play that video without needing to sign in as User A.
+
+Retain the uploader ID for auditing and management, but do not use it as a visibility filter for public-to-authorized-users content.
+
+## 6. Correct Publishing and Database Logic
+
+Implement a reliable publication workflow.
+
+- Use a persistent database as the source of truth for catalog information.
+- Ensure upload, metadata creation, and publication updates are handled reliably.
+- Prevent a successful upload from being lost because a page refresh resets frontend state.
+- Use database transactions or equivalent reliable operations where appropriate.
+- Make upload retries idempotent so they do not create accidental duplicate videos.
+- Distinguish clearly between `uploading`, `processing`, `ready`, `scheduled`, `published`, and `failed`.
+- Do not mark an incomplete video as published.
+- Do not remove an existing published video just because a new deployment has different frontend code.
+- Preserve stable video IDs and storage references across all updates.
+- Use database migrations that preserve existing records instead of resetting or recreating the production database.
+
+## 7. Public Catalog Access and Security
+
+Configure backend authorization so that:
+
+- Authorized users can read the shared catalog of published videos.
+- Only authorized administrators or permitted uploaders can create content, according to the platform's role rules.
+- Regular users cannot overwrite or delete official catalog content.
+- Published video playback works for users other than the uploader.
+- Private drafts remain restricted until published.
+- Storage credentials remain server-side and are never exposed in frontend code.
+- Private storage can use secure signed playback URLs or a controlled streaming endpoint, with suitable expiry and refresh handling.
+- Expiration of a temporary playback URL must never delete the underlying video.
+- All video access policies are enforced on the backend.
+
+## 8. Main Homepage — 24/7 Streaming Availability
+
+Make the YepStreamer homepage load the shared catalog from the persistent backend, not from temporary frontend arrays or uploader-specific state.
+
+- Display all eligible published videos in the correct sections.
+- Ensure videos remain discoverable after page refreshes, logouts, logins, and navigation away from the website.
+- Refresh catalog data reliably after a new publication.
+- Support pagination or incremental loading without hiding older published videos.
+- Preserve stable ordering and metadata.
+- Provide search and category filters over the same shared catalog.
+- Handle storage or network outages gracefully and retry when appropriate.
+- Keep the homepage and video playback available around the clock, subject to infrastructure availability and maintenance.
+
+Do not rely on keeping the uploader's browser open or logged in for a video to remain available.
+
+## 9. Production Infrastructure and Backups
+
+Configure the production environment for durable, always-on streaming:
+
+- Persistent object storage for original video files and processed playback assets.
+- A persistent production database for catalog records and metadata.
+- Database backups and point-in-time recovery where supported.
+- Storage redundancy, versioning, and integrity monitoring.
+- Reliable background processing and publishing jobs.
+- CDN delivery for scalable playback and global availability.
+- Monitoring and alerts for missing assets, failed uploads, failed publishing jobs, and storage errors.
+- Recovery procedures for database restoration and storage incidents.
+- Correct production environment variables and persistent storage configuration across deployments.
+
+Do not use development-only storage settings in production.
+
+## 10. Migration and Recovery of Existing Videos
+
+Before applying changes:
+
+1. Inventory existing video records and stored files.
+2. Identify videos that exist only in temporary storage or browser state.
+3. Identify database records with missing or broken storage references.
+4. Back up the current database and existing video files.
+5. Migrate recoverable videos to persistent storage without overwriting originals.
+6. Update each record with a verified, stable storage reference.
+7. Verify the shared catalog and playback for multiple user accounts.
+8. Report any videos that cannot be recovered because their original files are no longer available.
+
+Do not reset the database, clear existing video records, or rebuild the catalog from scratch without a verified migration and backup.
+
+## 11. Mandatory End-to-End Acceptance Tests
+
+Do not declare the problem fixed until these tests pass:
+
+1. Upload and publish a video as User A.
+2. Sign out of User A and verify that the video remains in persistent storage.
+3. Sign in as User B and confirm that the same published video appears and plays.
+4. Refresh the website and verify the video remains visible.
+5. Close and reopen the browser and verify the video remains available.
+6. Restart the application server and verify the video remains available.
+7. Redeploy a new website version and verify the video remains available.
+8. Clear the frontend cache and verify the video remains available.
+9. Upload another video and confirm that existing videos are not overwritten or removed.
+10. Simulate a processing failure and verify that the original video remains stored.
+11. Verify that temporary playback URL expiry does not remove the original video.
+12. Verify that unauthorized users cannot delete, overwrite, or access restricted content.
+13. Verify that existing catalog entries survive database migrations and normal maintenance.
+14. Restore a test backup and confirm that video metadata and storage references are recoverable.
+15. Verify that the homepage continues serving the shared published catalog when the original uploader is offline.
+
+## Final Non-Negotiable Instruction
+
+Fix the existing YepStreamer implementation rather than creating a disconnected demo or replacing the current project.
+
+Preserve the existing admin dashboard, upload workflow, categories, seasons, episodes, and other working features. Do not introduce ordinary video deletion controls.
+
+Every successfully uploaded original video must be retained in durable storage, and every published video must be available to all authorized users through the shared catalog. Aim for 24/7 availability using production-grade infrastructure, redundancy, monitoring, backups, and recovery procedures.
+
+Do not claim that 400 years of uninterrupted availability can be guaranteed. Instead, design the system for long-term retention, prevent automatic deletion, and implement tested recovery and migration procedures.
+
+After implementation, provide a clear report identifying the root cause, files or components changed, storage configuration, migration results, and acceptance tests that actually passed.

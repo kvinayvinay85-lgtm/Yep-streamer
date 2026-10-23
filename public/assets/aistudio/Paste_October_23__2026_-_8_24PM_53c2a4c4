@@ -1,0 +1,388 @@
+### YEP STREAMER — STREAMING ENGINE EXPANSION V2
+
+Extend the existing streaming-only specification with these additional capabilities:
+
+1. Low-latency streaming modes where live streaming is in scope.
+2. Frame-accurate seeking where supported by the media format.
+3. HDR playback and display-capability detection.
+4. Advanced audio formats and device-aware compatibility.
+5. Timeline thumbnails and chapter previews.
+6. Per-title playback preferences.
+7. Seamless episode transitions.
+8. Real playback diagnostics overlays.
+9. Multi-CDN failover where multiple providers are configured.
+10. Per-title encoding optimization.
+11. Recoverable playback-session restoration.
+12. DRM-aware playback where licensing requires it.
+13. Chapters and playback bookmarks.
+14. Automated network-condition testing.
+15. Streaming resilience and fault-recovery testing.
+
+Before implementing, compare these capabilities with the existing streaming code and previous specifications. Reuse existing functionality and add only genuinely missing features.
+
+For each capability, document supported browsers and devices, codec requirements, backend dependencies, measurable performance goals, failure scenarios, and acceptance tests.
+
+Do not expose unsupported HDR, audio, codec, resolution, or DRM options. Do not promise seamless playback on every device. Use real telemetry and verified playback results.
+
+Do not change unrelated account, payment, admin, or general website modules. Preserve all existing media and metadata.
+
+Implement in small, testable stages and report which capabilities are implemented, verified, partially supported, or blocked by infrastructure or licensing.# YEP STREAMER — ADVANCED STREAMING ENGINE EXPANSION V3
+
+## Objective
+Inspect the existing YEP STREAMER codebase and implement the following additional streaming-only capabilities. These are incremental improvements to the existing streaming engine, not a replacement of the current platform.
+
+### 1. Multi-Angle Playback
+- Support synchronized alternate video angles when multiple compatible streams exist.
+- Switch angles without restarting playback where technically possible.
+- Preserve playback time and selected audio/subtitle tracks.
+
+### 2. Live DVR and Catch-Up
+- For live streams only, support pause, seek-back, and catch-up playback within the configured DVR window.
+- Display the live-edge position and prevent seeking beyond available media.
+- Do not enable live-only controls for ordinary VOD content.
+
+### 3. Smart Scene Navigation
+- Support chapter markers and optional intro, recap, credits, and preview skip markers.
+- Use verified timestamps or metadata; never invent scene boundaries.
+- Provide keyboard, remote, and touch navigation.
+
+### 4. Advanced Playback Speed
+- Add configurable playback speed options from 0.25x to 3x when supported.
+- Maintain audio-video synchronization and use pitch correction only where supported.
+- Fall back gracefully on unsupported devices.
+
+### 5. Subtitle Rendering
+- Allow subtitle size, font, color, background, position, and timing-offset customization where supported.
+- Support compatible WebVTT and other already-supported subtitle formats.
+- Keep subtitle selection synchronized with playback state.
+
+### 6. Playback Failure Recovery
+- Detect supported media errors, stalled playback, black-screen symptoms, audio failures, and decoder failures where observable.
+- Retry recoverable network requests with bounded exponential backoff.
+- Avoid infinite retry loops and expose a useful error when recovery fails.
+
+### 7. Buffer-Aware Bitrate Adaptation
+- Use actual segment download times, buffer health, and available network estimates.
+- Avoid aggressive bitrate oscillation and unnecessary quality changes.
+- Respect device decoding limits and user-selected quality settings.
+
+### 8. Encoding and Manifest Validation
+- Validate generated HLS/DASH manifests, segment availability, codecs, durations, audio tracks, subtitle tracks, and rendition metadata.
+- Prevent publication of incomplete or invalid streaming outputs.
+- Preserve the original uploaded master file.
+
+### 9. CDN Cache Warming
+- Add an optional, provider-specific cache-warming workflow for newly published or popular streams.
+- Use documented CDN APIs and configurable limits.
+- Skip this feature when the configured CDN does not support it.
+
+### 10. Stream Integrity and Access
+- Validate playback manifests and segments where appropriate.
+- Support expiring signed playback URLs and authorized access when required.
+- Never expose private signing keys or service credentials in frontend code.
+- Do not claim DRM protection unless a real DRM provider and supported playback pipeline are configured.
+
+### 11. Optional 360-Degree Playback
+- Detect compatible 360-degree media metadata.
+- Provide pan and tilt controls for supported projection formats.
+- Use ordinary playback for unsupported media instead of breaking the player.
+
+### 12. Picture-in-Picture
+- Use native browser or operating-system Picture-in-Picture APIs when supported.
+- Handle unsupported browsers and mobile restrictions gracefully.
+- Preserve playback state when entering or leaving Picture-in-Picture.
+
+### 13. Keyboard, Remote, and Accessibility Controls
+- Support configurable keyboard shortcuts and accessible focus management.
+- Implement TV remote navigation only for compatible TV environments.
+- Ensure captions, accessible labels, and visible focus indicators work correctly.
+
+### 14. Quality-of-Experience Monitoring
+- Record real playback startup time, rebuffer events, fatal errors, bitrate changes, and dropped-frame metrics when available.
+- Aggregate privacy-conscious telemetry.
+- Clearly distinguish unavailable metrics from zero-valued metrics.
+- Provide actionable diagnostic information without exposing sensitive user data.
+
+### 15. Seamless Stream Switching
+- Preserve playback position when switching compatible streams or renditions.
+- Keep audio and subtitles aligned where possible.
+- Recover safely when a switch fails and retain the last working stream.
+
+## Implementation Rules
+- First inspect the existing player, upload pipeline, HLS/DASH support, storage configuration, and backend architecture.
+- Reuse existing components and avoid duplicate implementations.
+- Keep VOD and live-stream capabilities separate.
+- Use actual playback, network, manifest, and encoding data; never simulate success or fake metrics.
+- Use feature detection and graceful fallbacks for browser/device limitations.
+- Do not replace working Firebase authentication, storage, or publishing logic.
+- Do not delete existing videos or metadata.
+- Do not add unrelated account, profile, payment, or admin features in this task.
+- Document any required CDN, transcoding, DRM, or live-stream infrastructure.
+- Implement tests for supported browsers, mobile playback, network interruptions, invalid manifests, and recovery paths.
+
+## Acceptance Criteria
+A feature is complete only when its implementation, dependencies, error handling, and tests are verified. Clearly report what works, what requires external infrastructure, and what remains unsupported. Do not label a feature complete merely because its UI has been added.# YEP STREAMER — STREAMING ENGINE EXPANSION V4
+
+Inspect the existing YEP STREAMER repository and implement only the following new streaming-engine capabilities. Do not recreate features that already exist in previous streaming-engine versions.
+
+1. **Predictive Segment Prefetching:** Prefetch a bounded number of upcoming media segments using playback position, buffer health, and bandwidth estimates. Cancel unnecessary prefetches and respect data-saving settings.
+2. **Segment Cache Optimization:** Measure cache hits, misses, latency, and segment delivery failures. Integrate with the configured CDN's supported caching controls.
+3. **Network Handover Recovery:** Detect connectivity changes, recover interrupted requests, refresh authorized playback URLs when appropriate, and resume from the last valid playback position.
+4. **Automated Visual Quality Checks:** Analyze transcoded output for black frames, frozen frames, missing segments, and corrupt media. Flag suspected issues for review rather than silently modifying the source.
+5. **Audio Loudness Normalization:** Add configurable loudness analysis and normalization to the backend media-processing pipeline. Preserve original master audio and validate the output.
+6. **Storyboard Thumbnail Pipeline:** Generate seek-preview thumbnails and timestamp indexes for long-form video. Store them separately from the original upload and load them efficiently in the player.
+7. **Encoding Job Prioritization:** Implement configurable job priorities, bounded worker concurrency, retries, and fair scheduling without losing jobs.
+8. **Bandwidth-Aware Delivery:** Monitor delivery throughput and resource capacity, and apply safe limits to prevent overload.
+9. **Timestamp and A/V Sync Validation:** Validate durations, timestamps, segment boundaries, and audio-video synchronization across generated renditions.
+10. **Automated Compatibility Testing:** Test supported browsers, devices, codecs, resolutions, audio tracks, subtitle tracks, and invalid media inputs.
+11. **Codec Selection Optimization:** Select only codecs supported by both the generated media pipeline and target playback environment. Provide compatible fallback renditions.
+12. **End-to-End Playback Tracing:** Correlate media processing, manifest delivery, segment requests, and player failures using non-sensitive trace identifiers.
+13. **Resumable Processing Jobs:** Use checkpoints or idempotent processing jobs where supported. Detect stale jobs and resume or retry safely.
+14. **Delivery Cost Analytics:** Calculate measurable storage, transcoding, CDN transfer, and cache-efficiency metrics using actual provider data where available.
+15. **Graceful Playback Degradation:** Fall back to an available compatible rendition when a higher-quality rendition fails, without creating infinite retry loops.
+
+## Engineering Requirements
+- Inspect the existing code before making changes.
+- Reuse existing streaming, storage, upload, and transcoding components.
+- Do not remove, overwrite, or automatically delete original master videos.
+- Do not fabricate telemetry, cache statistics, cost estimates, test results, or successful playback.
+- Use bounded retries, timeouts, concurrency limits, and cancellation.
+- Protect credentials and signed playback URLs.
+- Make new backend workers and CDN integrations configurable.
+- Use feature detection and safe fallbacks when browser, codec, or provider support is missing.
+- Add unit tests, integration tests, and playback regression tests.
+- Document all infrastructure, provider permissions, configuration, and cost implications.
+
+## Completion Criteria
+For each feature, report its implementation status, files changed, dependencies, test evidence, and limitations. A UI control alone does not count as implementation. Keep the scope strictly limited to video streaming, media processing, delivery, playback reliability, and streaming performance.# YEP STREAMER — STREAMING ENGINE EXPANSION V5
+
+Inspect the existing streaming implementation and add only the following missing capabilities. Do not duplicate existing features.
+
+1. Seamless audio-track switching while preserving playback position and synchronization.
+2. Subtitle-track failure handling with clear errors and optional user-selected fallback.
+3. Precision seeking with correct timestamp handling and post-seek synchronization.
+4. Reliable resume and seeking for long-form videos, including 4–5 hour files.
+5. Auto quality and manual quality-lock modes that respect user preferences.
+6. Frame-drop and rendering-performance detection using supported browser metrics.
+7. Manifest version and playback-format compatibility validation.
+8. Mobile orientation, fullscreen, and resize handling.
+9. Playback stall detection with bounded recovery and no infinite retry loops.
+10. Cross-rendition duration, timestamp, and audio-alignment validation.
+11. Privacy-conscious playback error reports with non-sensitive diagnostic details.
+12. Data Saver Mode with reduced-quality options and configurable prefetch limits.
+
+## Requirements
+- Audit the existing code before implementation.
+- Reuse the current player, transcoding pipeline, storage, and delivery architecture.
+- Preserve uploaded master files and existing published media.
+- Never fake playback metrics or claim unsupported device capabilities.
+- Keep audio, subtitle, quality, and playback-position state consistent.
+- Test long videos, seek operations, connection loss, browser changes, and mobile fullscreen transitions.
+- Document unsupported formats and required infrastructure.
+- Do not add unrelated streaming-platform features.
+
+## Acceptance Criteria
+Each feature must include working implementation, appropriate tests, error handling, and a report of verified results. A visual control without functioning underlying logic is not a completed feature.# YEP STREAMER — STREAMING ENGINE EXPANSION V6
+
+Audit the existing streaming engine and implement only the following missing capabilities without duplicating previously implemented features:
+
+1. Smooth quality transitions without unnecessary playback restarts.
+2. Detect and correct audio-video timing drift where the playback pipeline permits.
+3. Validate episode boundary timestamps and transitions.
+4. Integrate supported background playback and operating-system media controls.
+5. Recover playback after connectivity returns, preserving the last valid position.
+6. Compare source and encoded output quality using measurable metrics.
+7. Detect device and browser playback capabilities before selecting compatible media.
+8. Measure and optimize actual playback startup latency.
+9. Validate segment alignment across bitrate renditions.
+10. Generate privacy-safe, reproducible playback diagnostic reports.
+11. Add pre-publication streaming certification for manifests, segments, tracks, duration, and seeking.
+12. Implement configurable low-data, balanced, and high-quality playback policies.
+
+## Rules
+- Inspect the current repository and previous streaming implementations before coding.
+- Reuse existing player, transcoding, and delivery components.
+- Do not duplicate features already working.
+- Do not delete original videos or existing published media.
+- Use real measurements and automated tests; never fabricate success or performance improvements.
+- Respect browser, device, codec, and infrastructure limitations.
+- Add bounded retries and safe fallbacks.
+- Keep this task limited to streaming playback, encoding, validation, and delivery.
+- Document implementation status, files changed, dependencies, test results, and remaining limitations.
+
+A feature is complete only when its underlying logic works and has appropriate verification. A UI control alone is not sufficient.# YEP STREAMER — ADVANCED STREAMING ENGINE V7
+
+Inspect the existing YEP STREAMER repository. Implement only missing streaming capabilities from this list, without duplicating features already implemented in earlier versions.
+
+1. Optimize low-latency HLS for supported live-streaming configurations.
+2. Add scene-aware encoding and configurable bitrate allocation using the existing backend transcoding pipeline.
+3. Improve congestion handling using real network and buffer measurements.
+4. Protect manifests and media segments using server-validated authorization and expiring access where required.
+5. Generate additional renditions on demand through a durable backend job queue.
+6. Apply request limits, concurrency controls, and overload protection.
+7. Add objective quality evaluation using supported metrics such as VMAF, SSIM, or PSNR.
+8. Optimize long-range seeking for multi-hour video content.
+9. Add health checks for storage, transcoding, manifest generation, and configured delivery services.
+10. Support live-stream failover only when a genuine alternate ingest source is configured.
+11. Scale transcoding workers using the deployment platform's supported autoscaling capabilities.
+12. Add automated fault-injection tests for network, media, authorization, and processing failures.
+
+## Implementation Rules
+- Audit the current implementation before modifying code.
+- Reuse existing player, storage, transcoding, and delivery systems.
+- Preserve original uploaded videos and existing published media.
+- Never simulate production metrics or report unverified features as complete.
+- Keep live-only features separate from ordinary video-on-demand playback.
+- Protect credentials, manifests, and signed URLs.
+- Use bounded retries, timeouts, queue limits, and resource limits.
+- Document external infrastructure, permissions, dependencies, and expected costs.
+- Add automated tests and verify real playback.
+- Do not add unrelated platform modules.
+
+## Completion Report
+For each feature, report whether it was already implemented, newly implemented, blocked by missing infrastructure, or unsupported. Include changed files, configuration, test results, and remaining limitations. A UI-only implementation does not count as completion.# YEP STREAMER — STREAMING ENGINE EXPANSION V8
+
+Inspect the existing streaming engine and implement only capabilities that are genuinely missing.
+
+1. Add compatible CMAF packaging for supported HLS/DASH workflows.
+2. Integrate CDN origin shielding where the configured provider supports it.
+3. Implement backend-validated, expiring playback authorization tokens.
+4. Optimize keyframe placement and segment alignment in the transcoding pipeline.
+5. Add power-aware playback adjustments only when reliable device signals are available.
+6. Generate compatible HDR and SDR renditions using validated tone-mapping workflows.
+7. Add privacy-conscious regional delivery diagnostics using actual CDN telemetry.
+8. Integrate DRM key rotation and license renewal only when a real DRM provider is configured.
+9. Run automated regression tests after player, packaging, or transcoding changes.
+10. Support archive retrieval workflows when the storage provider has a configured archive tier.
+
+## Requirements
+- Audit existing code and previous implementations before coding.
+- Avoid duplicate features and unnecessary infrastructure.
+- Preserve original uploads and existing published videos.
+- Use real provider APIs and actual telemetry.
+- Never expose signing keys, DRM secrets, or private credentials in client code.
+- Use feature detection, compatibility checks, bounded retries, and safe fallbacks.
+- Document provider dependencies, infrastructure costs, and unsupported devices.
+- Keep changes limited to video streaming, packaging, encoding, playback, security, and delivery.
+- Test real playback and report verified results.
+
+A feature must not be marked complete until its backend or player logic works and its behavior has been tested. If infrastructure is missing, report the dependency instead of simulating success.# YEP STREAMER — STREAMING ENGINE EXPANSION V9
+
+Inspect the existing codebase and implement only missing capabilities from this list.
+
+1. Analyze variable-frame-rate inputs and normalize frame pacing when required.
+2. Validate media containers, codecs, timestamps, metadata, and supported audio tracks.
+3. Verify media integrity using checksums and processing-stage validation.
+4. Support safe distributed transcoding where the existing infrastructure permits it.
+5. Validate audio-language mappings and channel layouts across renditions.
+6. Preserve and validate color-space metadata during transcoding.
+7. Quarantine repeatedly failing processing jobs and expose actionable failure reasons.
+8. Version encoding profiles, processing jobs, and generated renditions.
+9. Implement origin recovery only when genuine replicas or recovery sources are configured.
+10. Require automated media-quality and compatibility tests before production pipeline releases.
+
+## Engineering Rules
+- Audit existing functionality before making changes.
+- Reuse current storage, upload, transcoding, and playback components.
+- Preserve original master files and existing published videos.
+- Make processing jobs idempotent where possible.
+- Use bounded retries, resource limits, integrity checks, and clear failure states.
+- Never report an unverified rendition or recovery operation as successful.
+- Do not add unrelated platform modules.
+- Document required infrastructure, dependencies, configuration, and test evidence.
+
+## Completion Criteria
+Report which features already exist, which were implemented, and which require additional infrastructure. Include changed files, test results, limitations, and verification steps. UI-only changes do not count as completed functionality.# YEP STREAMER — STREAMING ENGINE EXPANSION V10
+
+Audit the existing codebase and implement only missing streaming-engine capabilities.
+
+1. Use hardware-accelerated encoding or decoding when supported and beneficial.
+2. Improve packet-loss resilience for applicable streaming transports and segment delivery.
+3. Validate synchronization between audio, video, subtitles, and playback timestamps.
+4. Implement health-aware CDN routing when supported by configured providers.
+5. Generate content-adaptive bitrate ladders based on measured media complexity and target device requirements.
+6. Negotiate compatible codecs and provide fallback renditions where available.
+7. Adapt playback to reliable device-performance signals without inventing unavailable metrics.
+8. Protect origin services through caching, request coalescing, and bounded concurrency.
+9. Define measurable performance budgets for startup, buffering, seeking, and playback failures.
+10. Support staged or canary releases for player and media-processing changes where the deployment platform permits.
+
+## Rules
+- Inspect existing code and avoid duplicate features.
+- Preserve original videos and published media.
+- Use real telemetry, benchmarks, and compatibility tests.
+- Respect browser, device, hardware, and CDN limitations.
+- Do not claim a performance improvement without measured evidence.
+- Add regression tests and safe rollback procedures.
+- Keep scope limited to video encoding, streaming, playback, and delivery.
+- Report implementation status, dependencies, files changed, test results, and limitations.
+
+A feature is complete only after its underlying logic has been implemented and verified. UI-only changes do not count as completion.# YEP STREAMER — STREAMING ENGINE V11
+## Specialized Advanced Streaming Features
+
+Implement the following features only when they are not already present in the existing codebase. Reuse existing components and avoid duplicate implementations.
+
+### 1. Animation-Specific Encoding
+- Optimize encoding for anime, cartoons, and line-art content.
+- Preserve sharp outlines and fine details.
+- Reduce banding, blocking, and compression artifacts.
+- Select encoding settings based on content type.
+
+### 2. Advanced Manifest Validation
+- Validate HLS, DASH, and CMAF manifests before publication.
+- Detect missing segments, incorrect timestamps, invalid durations, and broken references.
+- Verify audio, subtitle, and video track compatibility.
+- Block publication when critical validation errors exist.
+
+### 3. Seamless Content Splicing
+- Support safe transitions between compatible video segments.
+- Handle discontinuities, timestamp resets, and codec changes.
+- Prevent black frames, audio gaps, and playback interruptions at transition points.
+
+### 4. Broadcast-Quality Audio Compliance
+- Measure audio loudness and true peak levels.
+- Detect clipping, silence, and unexpected channel-layout changes.
+- Apply configurable loudness normalization during processing.
+- Preserve original audio when normalization is disabled.
+
+### 5. Optional Forensic Watermarking
+- Support forensic watermarking through a compatible external provider or processing pipeline.
+- Protect eligible premium content against unauthorized redistribution.
+- Keep watermarking configurable per title and compatible with the selected DRM workflow.
+
+### 6. Multi-Period DASH Support
+- Handle DASH presentations containing multiple periods.
+- Validate timestamp continuity and track compatibility across periods.
+- Recover gracefully from manifest discontinuities and playback transitions.
+
+### 7. Regional Synthetic Playback Tests
+- Run automated playback tests from configured test locations.
+- Measure startup time, buffering, playback errors, and segment availability.
+- Compare results across regions and delivery providers.
+- Clearly distinguish simulated test results from real viewer analytics.
+
+### 8. Streaming Reliability SLOs
+- Define measurable service objectives for playback availability, startup delay, and rebuffering.
+- Track error-budget consumption and reliability trends.
+- Trigger alerts when configured thresholds are exceeded.
+- Avoid exposing personal viewer data in diagnostic reports.
+
+### 9. ISO-BMFF Fragment Integrity
+- Validate fragmented MP4 structure and required metadata.
+- Detect malformed fragments, missing timing information, and inconsistent track identifiers.
+- Quarantine invalid outputs and retain diagnostic details for investigation.
+
+### 10. Safe Release and Rollback
+- Version encoding profiles, packaging rules, and player configuration.
+- Test changes against representative anime, films, and long episodes.
+- Release changes gradually when supported by the deployment infrastructure.
+- Automatically roll back a release when configured critical playback checks fail.
+
+### Implementation Rules
+- Audit the existing repository before writing code.
+- Implement only genuinely missing features.
+- Do not replace working streaming functionality unnecessarily.
+- Use real processing, validation, and monitoring integrations—not mock success messages.
+- Add automated tests and document infrastructure dependencies.
+- Mark each feature as Implemented, Partially Implemented, Blocked by Infrastructure, or Not Implemented.
+- Do not claim production readiness until the relevant tests pass.

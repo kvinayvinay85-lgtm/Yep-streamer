@@ -1,0 +1,952 @@
+# YEP STREAMER — COMPLETE PROFESSIONAL MASTER BUILD PROMPT
+## Version 1.0 | Numbered Features | Admin + Upload + Streaming + Future Scalability
+
+### 1. YOUR ROLE
+
+Act as a principal software architect, senior full-stack engineer, backend engineer, database architect, cloud infrastructure engineer, UI/UX designer, security engineer, QA engineer, and DevOps engineer.
+
+Build a real, professional, production-oriented streaming platform named **YEP STREAMER**.
+
+Do not create only a design, static frontend, mockup, demo, or fake upload simulation. Build the actual application using the existing project wherever possible, inspect its current code, identify problems, and implement working features.
+
+The platform must support:
+
+1. Public streaming website.
+2. Professional Admin Panel.
+3. Real video uploading.
+4. Video metadata management.
+5. Poster and thumbnail management.
+6. Publish and unpublish workflows.
+7. Video playback.
+8. Movies, anime, series, dramas, and reels.
+9. Authentication and authorization.
+10. Secure backend APIs.
+11. Database integration.
+12. Cloud storage integration.
+13. Upload progress and error recovery.
+14. Search, filtering, and categories.
+15. Analytics, logs, backups, monitoring, and testing.
+16. A documented long-term scaling roadmap.
+
+### 2. NUMBERING AND FEATURE MANAGEMENT SYSTEM
+
+Create a structured feature registry with unique IDs.
+
+Use these number ranges:
+
+- **001–099:** Project setup and architecture.
+- **100–199:** Public website and navigation.
+- **200–299:** Admin authentication and permissions.
+- **300–399:** Video upload system.
+- **400–499:** Metadata, posters, and thumbnails.
+- **500–599:** Publishing and content management.
+- **600–699:** Video player and streaming.
+- **700–799:** Search, categories, and discovery.
+- **800–899:** Database, storage, and backend.
+- **900–999:** Security, audit logs, and privacy.
+- **1000–1999:** User accounts and personalization.
+- **2000–2999:** Analytics and reporting.
+- **3000–3999:** Performance and caching.
+- **4000–4999:** Accessibility and responsive design.
+- **5000–5999:** Testing and reliability.
+- **6000–6999:** Deployment and DevOps.
+- **7000–7999:** Advanced streaming features.
+- **8000–8999:** Distributed systems and scalability.
+- **9000–9999:** Advanced administration and automation.
+- **10000 and above:** Future modules, integrations, and expansion.
+
+Every feature must have:
+
+1. Unique feature ID.
+2. Feature name.
+3. Detailed description.
+4. User story or use case.
+5. Frontend implementation.
+6. Backend implementation, when needed.
+7. Database or storage changes, when needed.
+8. Authentication and permission requirements.
+9. Error handling.
+10. Test cases.
+11. Dependencies.
+12. Status: `PLANNED`, `IN_PROGRESS`, `IMPLEMENTED`, `TESTED`, or `BLOCKED`.
+13. Evidence that the feature works.
+
+Never mark a feature as implemented or tested unless its implementation and verification support that status.
+
+Do not create thousands of empty buttons or fake features simply to increase the feature count.
+
+### 3. EXISTING PROJECT AUDIT
+
+Before modifying code:
+
+**001.** Inspect the complete project structure.
+
+**002.** Identify the framework, language, package manager, build system, and current entry points.
+
+**003.** Inspect existing Admin Panel code.
+
+**004.** Inspect existing upload components and upload services.
+
+**005.** Inspect Firebase initialization and configuration.
+
+**006.** Inspect Firebase Authentication integration.
+
+**007.** Inspect Firebase Storage integration and storage rules.
+
+**008.** Inspect Firestore collections, document structures, and security rules.
+
+**009.** Inspect the public website and video player.
+
+**010.** Inspect existing environment variables and server APIs.
+
+**011.** Identify duplicate, broken, obsolete, and mock implementations.
+
+**012.** Identify why upload progress, authentication, and publishing might fail.
+
+**013.** Check whether the frontend and backend use the same Firebase project and compatible authentication sessions.
+
+**014.** Preserve existing valid published videos, storage objects, metadata, and user data.
+
+**015.** Never delete existing cloud content during a code cleanup.
+
+**016.** Create a safe migration plan before changing existing database structures.
+
+**017.** Provide a short audit report before making destructive or high-risk changes.
+
+### 4. PROFESSIONAL PUBLIC WEBSITE
+
+**100.** Build a polished, modern streaming homepage.
+
+**101.** Create a professional logo and consistent visual identity for YEP STREAMER.
+
+**102.** Build a responsive navigation bar.
+
+**103.** Create a featured-content hero section.
+
+**104.** Display published movies and series using content cards.
+
+**105.** Add category navigation.
+
+**106.** Add a search interface.
+
+**107.** Add a video details page.
+
+**108.** Add a dedicated playback page.
+
+**109.** Add loading, empty, error, and retry states.
+
+**110.** Add a recently added section.
+
+**111.** Add featured and trending sections where the required data exists.
+
+**112.** Add pagination or cursor-based loading.
+
+**113.** Hide unpublished and private content from public users.
+
+**114.** Fetch actual published records from the database.
+
+**115.** Never use hardcoded sample videos as a substitute for live database records.
+
+**116.** Ensure all navigation links and buttons perform their intended actions.
+
+### 5. RESPONSIVE DESIGN
+
+**120.** Design mobile layouts first.
+
+**121.** Support mobile phones.
+
+**122.** Support tablets.
+
+**123.** Support desktop and laptop screens.
+
+**124.** Support large desktop screens.
+
+**125.** Use appropriate responsive breakpoints.
+
+**126.** Ensure tables can scroll horizontally or adapt to cards on mobile.
+
+**127.** Ensure upload controls are usable on touchscreens.
+
+**128.** Make dialogs, forms, dropdowns, and menus keyboard-accessible.
+
+**129.** Prevent content overflow and overlapping controls.
+
+**130.** Maintain readable typography and consistent spacing.
+
+### 6. ADMIN AUTHENTICATION AND AUTHORIZATION
+
+**200.** Create a dedicated Admin login page.
+
+**201.** Use secure authentication supported by the chosen backend.
+
+**202.** Keep authentication state consistent across Admin routes and upload services.
+
+**203.** Display an authentication-loading state until session verification finishes.
+
+**204.** Prevent upload actions before authentication is ready.
+
+**205.** Use server-verified Admin roles or custom claims.
+
+**206.** Enforce authorization on the backend and through database/storage security rules.
+
+**207.** Do not trust a frontend-only `isAdmin` variable.
+
+**208.** Do not rely on anonymous sign-in as proof of Admin identity.
+
+**209.** Do not hardcode Admin passwords in frontend source code.
+
+**210.** Do not expose secrets, private keys, service-account credentials, or privileged tokens in browser code.
+
+**211.** Implement session expiry and secure logout.
+
+**212.** Protect every Admin route.
+
+**213.** Protect every Admin API endpoint.
+
+**214.** Provide understandable login failure messages without exposing sensitive internal details.
+
+**215.** Record important administrative actions in audit logs.
+
+**216.** Apply rate limiting or appropriate abuse protection to login endpoints.
+
+**217.** Ensure unauthorized users cannot publish, delete, or modify content.
+
+### 7. ADMIN DASHBOARD
+
+**220.** Create a professional dashboard overview.
+
+**221.** Show the total number of published videos.
+
+**222.** Show draft and unpublished content counts.
+
+**223.** Show upload jobs and their current statuses.
+
+**224.** Show recent publishing activity.
+
+**225.** Show upload failures requiring attention.
+
+**226.** Show recent administrative activity.
+
+**227.** Provide shortcuts to Upload, Content Library, Categories, and Settings.
+
+**228.** Fetch dashboard statistics from real backend data.
+
+**229.** Add appropriate loading, error, and empty states.
+
+**230.** Do not invent analytics numbers.
+
+### 8. REAL VIDEO UPLOAD SYSTEM
+
+**300.** Build a dedicated, reusable video-upload service.
+
+**301.** Upload actual file bytes to cloud storage.
+
+**302.** Use resumable uploads where supported.
+
+**303.** Show actual upload progress reported by the storage SDK.
+
+**304.** Display bytes uploaded and total bytes.
+
+**305.** Display percentage progress.
+
+**306.** Display upload speed and estimated remaining time only when measurable.
+
+**307.** Distinguish file selection, upload, server processing, metadata saving, and publishing.
+
+**308.** Show separate progress states for each stage.
+
+**309.** Add pause and resume only where the selected upload technology supports them.
+
+**310.** Support retry after recoverable failures.
+
+**311.** Preserve upload state when technically supported.
+
+**312.** Prevent duplicate upload jobs caused by repeated button clicks.
+
+**313.** Validate file type and file size before uploading.
+
+**314.** Handle interrupted network connections.
+
+**315.** Handle authentication expiration.
+
+**316.** Handle insufficient storage permissions.
+
+**317.** Handle storage quota and backend errors.
+
+**318.** Display the real error message in a safe, user-friendly form.
+
+**319.** Never display fake progress.
+
+**320.** Never claim an upload succeeded until storage confirms completion.
+
+**321.** Never claim publishing succeeded until the backend confirms the published record.
+
+**322.** Use a unique upload-job ID.
+
+**323.** Record file size, MIME type, upload status, and storage object path.
+
+**324.** Use safe filenames and unique storage object names.
+
+**325.** Ensure concurrent uploads do not overwrite unrelated files.
+
+**326.** Support large video files within the actual limits of the selected infrastructure.
+
+**327.** Design for long-form videos of four to five hours, subject to file size, network speed, provider limits, and available storage.
+
+**328.** Never promise a fixed upload duration without measurements.
+
+**329.** Verify that the final uploaded object exists before proceeding.
+
+**330.** Clean up incomplete temporary objects only through a safe, explicit recovery process.
+
+**331.** Do not automatically delete valid uploaded videos.
+
+**332.** Keep upload, processing, and publishing statuses separate.
+
+**333.** Provide an upload history page.
+
+**334.** Provide a retry action for failed jobs.
+
+**335.** Provide a safe cancellation workflow.
+
+### 9. UPLOAD WORKFLOW
+
+Build the upload workflow with these stages:
+
+**340. Stage 1 — Select Source**
+
+- Choose a video file.
+- Display filename and size.
+- Validate file type.
+- Validate file size.
+- Allow cancellation before uploading.
+
+**341. Stage 2 — Transfer File**
+
+- Start the real cloud upload.
+- Show actual transfer progress.
+- Show bytes transferred.
+- Handle retryable failures.
+- Confirm storage completion.
+
+**342. Stage 3 — Enter Metadata**
+
+- Title.
+- Description.
+- Content category.
+- Release year.
+- Language.
+- Duration, when available.
+- Content rating, where applicable.
+- Tags.
+- Series and episode information, when applicable.
+
+**343. Stage 4 — Artwork**
+
+- Upload a poster.
+- Upload a thumbnail.
+- Preview selected artwork.
+- Validate image type and size.
+- Allow replacement before publishing.
+
+**344. Stage 5 — Review and Publish**
+
+- Show a summary of all metadata.
+- Validate required fields.
+- Verify the uploaded object.
+- Verify authorization.
+- Save metadata to the database.
+- Publish only after all required operations succeed.
+- Show the final confirmed result.
+
+**345.** Allow saving a draft without publishing.
+
+**346.** Allow an authorized Admin to resume an incomplete workflow.
+
+**347.** Clearly identify which stage failed.
+
+**348.** Provide a retry action for the failed stage.
+
+### 10. METADATA AND ARTWORK
+
+**400.** Build a professional metadata editor.
+
+**401.** Add title and description fields.
+
+**402.** Add category and genre selection.
+
+**403.** Add release year and language fields.
+
+**404.** Add duration and age/content-rating fields where appropriate.
+
+**405.** Add tags and searchable keywords.
+
+**406.** Add series title, season, and episode number fields.
+
+**407.** Support portrait, landscape, and square artwork where appropriate.
+
+**408.** Show artwork previews.
+
+**409.** Store artwork in cloud storage.
+
+**410.** Store artwork URLs or object references in the database.
+
+**411.** Validate artwork before publishing.
+
+**412.** Avoid broken or missing poster references.
+
+**413.** Allow authorized metadata edits after publishing.
+
+**414.** Track metadata update timestamps.
+
+### 11. CONTENT CATEGORIES
+
+**420.** Cinema Movies.
+
+**421.** Anime Movies & Series.
+
+**422.** Drama Titles.
+
+**423.** Reels 9:16 Clips.
+
+**424.** Support category-specific metadata.
+
+**425.** Support movies, series, seasons, and episodes.
+
+**426.** Support portrait playback for Reels.
+
+**427.** Support landscape playback for standard movies.
+
+**428.** Allow Admins to create or edit categories only when authorized.
+
+**429.** Validate category values on the backend.
+
+### 12. DATABASE AND STORAGE
+
+**800.** Use the existing Firebase project if it is configured correctly.
+
+**801.** Verify Firebase project configuration before modifying it.
+
+**802.** Use Firebase Authentication for identity when appropriate.
+
+**803.** Use Cloud Firestore for metadata and application records when appropriate.
+
+**804.** Use Firebase Storage for uploaded files when appropriate.
+
+**805.** Keep secrets on the server.
+
+**806.** Define and validate database schemas.
+
+**807.** Add timestamps for creation and updates.
+
+**808.** Add uploader identity and audit metadata where appropriate.
+
+**809.** Use unique document IDs and stable content IDs.
+
+**810.** Use indexed queries for frequently accessed data.
+
+**811.** Use pagination instead of fetching the entire collection.
+
+**812.** Avoid unnecessary repeated database reads.
+
+**813.** Implement least-privilege database rules.
+
+**814.** Implement least-privilege storage rules.
+
+**815.** Test rules using authenticated and unauthorized scenarios.
+
+**816.** Verify that the frontend and backend target the same project.
+
+**817.** Document required environment variables.
+
+**818.** Never commit secrets to source control.
+
+**819.** Preserve valid existing records during migrations.
+
+**820.** Provide a backup and recovery strategy.
+
+### 13. PUBLISHING AND CONTENT MANAGEMENT
+
+**500.** Create a Content Library in Admin.
+
+**501.** Display drafts, processing items, published items, and failed jobs separately.
+
+**502.** Provide search and filters.
+
+**503.** Provide a metadata-editing action.
+
+**504.** Provide a preview action.
+
+**505.** Provide publish and unpublish actions.
+
+**506.** Provide a status history.
+
+**507.** Verify the storage object before publishing.
+
+**508.** Verify the metadata before publishing.
+
+**509.** Use a backend-controlled publishing operation.
+
+**510.** Avoid exposing half-completed publishing transactions to the public.
+
+**511.** Use a reliable status model, for example `draft`, `uploading`, `uploaded`, `processing`, `ready`, `published`, and `failed`.
+
+**512.** Make publishing operations idempotent where possible.
+
+**513.** Ensure a repeated publish request does not create duplicate content.
+
+**514.** Display success only after backend confirmation.
+
+**515.** Ensure the public site queries only authorized, published records.
+
+**516.** Support authorized unpublishing without deleting the underlying video.
+
+**517.** Require explicit confirmation for permanent deletion.
+
+**518.** Limit permanent deletion to authorized administrators.
+
+**519.** Record deletion actions in audit logs.
+
+**520.** Never add automatic deletion of valid uploaded videos as a background cleanup shortcut.
+
+### 14. VIDEO PLAYBACK AND STREAMING
+
+**600.** Create a reliable video player.
+
+**601.** Support browser-compatible playback formats.
+
+**602.** Display playback errors and retry controls.
+
+**603.** Support playback seeking where the media format and server support it.
+
+**604.** Support fullscreen playback.
+
+**605.** Support responsive landscape playback.
+
+**606.** Support portrait playback for vertical clips.
+
+**607.** Display video title and metadata.
+
+**608.** Ensure player URLs are generated or accessed securely as required.
+
+**609.** Avoid publishing broken video URLs.
+
+**610.** Test playback on supported desktop and mobile browsers.
+
+**611.** For adaptive streaming, design a backend media-processing pipeline that can generate HLS renditions.
+
+**612.** Use a suitable worker service, such as a containerized FFmpeg worker, when transcoding is required.
+
+**613.** Do not assume Firebase Storage alone transcodes video.
+
+**614.** Store processing status and output locations.
+
+**615.** Keep original source files according to the configured retention policy.
+
+**616.** Make transcoding jobs retryable and observable.
+
+**617.** Do not mark a video playback-ready until its required outputs have been verified.
+
+**618.** Design for captions and subtitle tracks.
+
+**619.** Document media-processing costs and infrastructure requirements.
+
+### 15. SEARCH AND DISCOVERY
+
+**700.** Search by title.
+
+**701.** Search by description and tags where supported.
+
+**702.** Filter by category.
+
+**703.** Filter by release year where available.
+
+**704.** Filter by language where available.
+
+**705.** Add sorting by recent uploads.
+
+**706.** Add sorting by title.
+
+**707.** Add pagination.
+
+**708.** Provide useful no-results states.
+
+**709.** Prevent drafts and unpublished items from appearing in public search.
+
+**710.** Use a dedicated search service only if the product's scale and needs justify it.
+
+### 16. SECURITY AND PRIVACY
+
+**900.** Use HTTPS in production.
+
+**901.** Validate inputs on both client and server.
+
+**902.** Verify authentication on every protected backend operation.
+
+**903.** Enforce role-based authorization.
+
+**904.** Apply rate limits to sensitive endpoints.
+
+**905.** Prevent unauthorized metadata changes.
+
+**906.** Prevent unauthorized storage uploads.
+
+**907.** Prevent unauthorized deletion.
+
+**908.** Protect against common web vulnerabilities.
+
+**909.** Avoid leaking stack traces and secret values to users.
+
+**910.** Use secure environment-variable management.
+
+**911.** Audit Admin actions.
+
+**912.** Apply appropriate privacy and data-retention controls.
+
+**913.** Use signed URLs or authenticated delivery when required by the content-access model.
+
+**914.** Do not claim DRM protection unless a real DRM system has been integrated and tested.
+
+**915.** Document security assumptions and remaining risks.
+
+### 17. ANALYTICS AND MONITORING
+
+**2000.** Show real upload success and failure counts.
+
+**2001.** Show processing-job status.
+
+**2002.** Show publishing activity.
+
+**2003.** Measure upload duration where reliable timestamps exist.
+
+**2004.** Track backend errors.
+
+**2005.** Track playback errors where appropriate and privacy-compliant.
+
+**2006.** Monitor storage usage.
+
+**2007.** Monitor processing queue depth.
+
+**2008.** Monitor API latency.
+
+**2009.** Add structured server logs.
+
+**2010.** Add alerts for critical failures.
+
+**2011.** Avoid logging passwords, secret tokens, or unnecessary personal data.
+
+**2012.** Display analytics only when backed by real measurements.
+
+### 18. PERFORMANCE AND SCALABILITY
+
+**3000.** Use pagination and indexed queries.
+
+**3001.** Add caching where it improves performance and preserves correctness.
+
+**3002.** Serve public media through an appropriate CDN.
+
+**3003.** Separate media delivery from the application API.
+
+**3004.** Keep expensive transcoding away from synchronous web requests.
+
+**3005.** Use background jobs for processing tasks.
+
+**3006.** Make workers horizontally scalable where supported.
+
+**3007.** Use queue-based processing for long-running jobs.
+
+**3008.** Add retry policies and dead-letter handling where supported.
+
+**3009.** Apply backpressure when queues or services reach capacity.
+
+**3010.** Avoid a single central component becoming an unnecessary bottleneck.
+
+**3011.** Measure actual bottlenecks before adding complexity.
+
+**3012.** Document expected costs for storage, bandwidth, CDN, database, and transcoding.
+
+**3013.** Add load tests for realistic traffic levels.
+
+**3014.** Define performance targets and service-level objectives.
+
+**3015.** Increase capacity through measured, staged infrastructure changes.
+
+### 19. ADVANCED PLATFORM FEATURES
+
+**7000.** Add watch-history support if user accounts are enabled.
+
+**7001.** Add favorites or watchlists.
+
+**7002.** Add recently watched content.
+
+**7003.** Add configurable content recommendations.
+
+**7004.** Add multilingual metadata support.
+
+**7005.** Add subtitle management.
+
+**7006.** Add configurable homepage sections.
+
+**7007.** Add scheduled publishing when the backend supports it.
+
+**7008.** Add content-quality checks.
+
+**7009.** Add duplicate-upload detection where practical.
+
+**7010.** Add moderation workflows where needed.
+
+**7011.** Add configurable feature flags for safely releasing new features.
+
+**7012.** Keep optional features modular so they can be enabled without rewriting the core.
+
+### 20. DISTRIBUTED SYSTEMS AND LONG-TERM SCALE
+
+**8000.** Design clear boundaries between frontend, APIs, storage, metadata, media processing, and analytics.
+
+**8001.** Document which components can scale independently.
+
+**8002.** Support horizontal scaling for stateless backend services where appropriate.
+
+**8003.** Use CDN distribution for public media.
+
+**8004.** Use asynchronous processing for expensive media tasks.
+
+**8005.** Evaluate regional deployment only when justified by latency, compliance, and demand.
+
+**8006.** Plan database indexes and query patterns before scaling.
+
+**8007.** Plan database partitioning or sharding only when supported by measured requirements and the selected database.
+
+**8008.** Design for retries, duplicate messages, partial failures, and service recovery.
+
+**8009.** Add health checks and operational dashboards.
+
+**8010.** Create disaster-recovery and restoration procedures.
+
+**8011.** Define backup schedules and test restores.
+
+**8012.** Define capacity-testing scenarios.
+
+**8013.** Create staged capacity targets such as 100, 1,000, 10,000, 100,000, and 1,000,000 concurrent or active users, clearly defining the metric being tested.
+
+**8014.** Increase those targets only after testing the previous stage.
+
+**8015.** Evaluate higher scales using measured throughput, concurrent streams, bandwidth, database load, latency, and cost.
+
+**8016.** Do not claim the system supports 10 trillion users, streams, or requests unless a precisely defined workload has actually been demonstrated at that scale.
+
+**8017.** Treat `10,000,000,000,000` as a long-term planning ambition, not an already achieved capability.
+
+**8018.** Create a realistic roadmap identifying infrastructure, engineering, cost, and operational constraints at every stage.
+
+**8019.** Provide a clear distinction between implemented features, planned features, and theoretical future capabilities.
+
+**8020.** Do not build unnecessary distributed-system complexity before the product needs it.
+
+### 21. ADMIN SETTINGS AND AUDITABILITY
+
+**9000.** Add a protected Admin settings area.
+
+**9001.** Configure site title and branding.
+
+**9002.** Configure supported categories.
+
+**9003.** Configure upload constraints according to backend limits.
+
+**9004.** Configure publishing defaults.
+
+**9005.** Configure feature flags for optional functionality.
+
+**9006.** Display the active environment.
+
+**9007.** Display backend connectivity status based on real health checks.
+
+**9008.** Display storage connectivity status based on a real, authorized test.
+
+**9009.** Provide audit-log filtering.
+
+**9010.** Restrict sensitive settings to authorized roles.
+
+**9011.** Do not expose secret values in the Admin UI.
+
+### 22. TESTING REQUIREMENTS
+
+**5000.** Add unit tests for validation and business logic.
+
+**5001.** Add tests for authentication readiness.
+
+**5002.** Add tests for Admin authorization.
+
+**5003.** Add tests for upload progress handling.
+
+**5004.** Add tests for upload failure and retry.
+
+**5005.** Add tests for interrupted uploads where supported.
+
+**5006.** Add tests for Firestore metadata persistence.
+
+**5007.** Add tests for publishing and unpublishing.
+
+**5008.** Add tests for public visibility rules.
+
+**5009.** Add tests for unauthorized storage access.
+
+**5010.** Add tests for invalid metadata.
+
+**5011.** Add tests for duplicate publish requests.
+
+**5012.** Add tests for responsive layouts.
+
+**5013.** Add end-to-end tests for the main Admin upload workflow.
+
+**5014.** Test using a real test file and a controlled test environment.
+
+**5015.** Do not delete production data during tests.
+
+**5016.** Run the project's build and lint commands.
+
+**5017.** Report failed tests honestly.
+
+**5018.** Never claim that a test passed unless it actually ran and passed.
+
+### 23. DEPLOYMENT AND DEVOPS
+
+**6000.** Document local development setup.
+
+**6001.** Document required environment variables.
+
+**6002.** Document database and storage configuration.
+
+**6003.** Document security-rule deployment.
+
+**6004.** Document backend deployment.
+
+**6005.** Document media-worker deployment if transcoding is enabled.
+
+**6006.** Provide production build instructions.
+
+**6007.** Add health checks.
+
+**6008.** Document backup and restore procedures.
+
+**6009.** Document rollback steps.
+
+**6010.** Keep development and production environments separated.
+
+**6011.** Avoid making destructive infrastructure changes without explicit approval.
+
+**6012.** Report any setup requiring credentials or manual cloud-console configuration.
+
+### 24. REQUIRED TECHNICAL ARCHITECTURE
+
+Organize the application into clear modules, adapted to the current project:
+
+- Public website.
+- Admin dashboard.
+- Authentication and authorization.
+- Upload service.
+- Upload-job tracking.
+- Metadata service.
+- Artwork service.
+- Publishing service.
+- Content library.
+- Video player.
+- Database and storage adapters.
+- Backend API.
+- Media-processing worker, if required.
+- Monitoring and audit logging.
+- Tests and deployment configuration.
+
+Use TypeScript and the existing framework if compatible with the project.
+
+Do not rewrite the entire project unnecessarily. Replace broken or obsolete code carefully, and preserve functioning features and data.
+
+### 25. UPLOAD COMPLETION RULE
+
+An upload is successful only when:
+
+1. The authenticated Admin is verified.
+2. The file passes validation.
+3. The upload service starts successfully.
+4. Real bytes are transferred.
+5. Storage confirms completion.
+6. The stored object can be verified.
+7. Required metadata is saved.
+8. Publishing completes successfully, if publishing was requested.
+9. The public site can retrieve the published record.
+10. Playback works when the media is ready.
+
+If any step fails, display the exact failed stage and a safe retry path.
+
+Never use a timer, simulated percentage, fake storage URL, or mock Firestore record to claim success.
+
+### 26. IMPLEMENTATION ORDER
+
+Implement the platform in the following order:
+
+**Phase 1 — Audit:** Inspect the code, configuration, authentication, database, storage, and existing content.
+
+**Phase 2 — Foundation:** Correct application architecture, configuration, authentication, and authorization.
+
+**Phase 3 — Admin:** Build the dashboard, content library, and protected Admin routes.
+
+**Phase 4 — Upload:** Implement real resumable uploads, progress reporting, error handling, and upload history.
+
+**Phase 5 — Metadata:** Implement metadata validation, poster uploads, thumbnails, and category management.
+
+**Phase 6 — Publishing:** Implement drafts, publish, unpublish, and public visibility.
+
+**Phase 7 — Playback:** Implement real media playback and optional adaptive streaming processing.
+
+**Phase 8 — Discovery:** Implement search, filters, sorting, and pagination.
+
+**Phase 9 — Reliability:** Implement logging, tests, backups, monitoring, and recovery.
+
+**Phase 10 — Scaling:** Add CDN delivery, background workers, caching, and load testing according to measured needs.
+
+**Phase 11 — Future Roadmap:** Document additional modules and realistic scale milestones.
+
+Complete and verify each phase before declaring it finished.
+
+### 27. FINAL DELIVERY REQUIREMENTS
+
+When implementation is complete, provide:
+
+1. Project audit summary.
+2. Final architecture overview.
+3. List of files created or changed.
+4. List of broken features fixed.
+5. Numbered feature registry.
+6. Implemented feature IDs.
+7. Tested feature IDs and test evidence.
+8. Features still pending.
+9. Firebase and backend configuration steps.
+10. Required security-rule changes.
+11. Environment-variable documentation.
+12. Build and test results.
+13. Upload verification results.
+14. Publishing and playback verification results.
+15. Known limitations.
+16. Deployment instructions.
+17. Cost and infrastructure considerations.
+18. Future scaling roadmap.
+
+### 28. FINAL NON-NEGOTIABLE INSTRUCTIONS
+
+- Build real functionality, not a visual-only demo.
+- Do not invent completed features.
+- Do not fake upload progress.
+- Do not hardcode passwords or secrets.
+- Do not remove valid uploaded videos.
+- Do not delete existing data during cleanup.
+- Do not bypass authentication to make errors disappear.
+- Do not claim that Firebase Storage automatically transcodes video.
+- Do not claim 10 trillion users are supported without evidence.
+- Do not add thousands of meaningless features merely to satisfy a number.
+- Give every meaningful feature a unique ID and verifiable acceptance criteria.
+- Keep the code modular, secure, maintainable, and testable.
+- Ask for clarification only when a missing detail blocks safe implementation.
+- If a required cloud credential, permission, service, or deployment action is unavailable, identify the exact blocker and explain how to resolve it.
+- Start by auditing the existing project, then implement the highest-priority working features in order.
+
+**BEGIN NOW: Audit the existing project, create the numbered implementation plan, and then build the actual working YEP STREAMER platform phase by phase.**
