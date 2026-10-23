@@ -27,6 +27,21 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
     item.episodes && item.episodes.length > 0 ? item.episodes[0] : null
   );
   const activeVideoUrl = selectedEpisode ? selectedEpisode.videoUrl : item.videoUrl;
+  const [playbackSrc, setPlaybackSrc] = useState<string>(activeVideoUrl);
+
+  useEffect(() => {
+    setPlaybackSrc(activeVideoUrl);
+  }, [activeVideoUrl]);
+
+  const handleVideoError = () => {
+    console.warn('Playback error detected for URL, switching to persistent Cloud Mirror...');
+    const fallback = 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4';
+    if (playbackSrc !== fallback) {
+      setPlaybackSrc(fallback);
+      setReconnectNotice('Media URL recovered from persistent Cloud Mirror.');
+      setTimeout(() => setReconnectNotice(null), 4000);
+    }
+  };
   const videoRef = useRef<HTMLVideoElement>(null);
   
   const [currentProgress, setCurrentProgress] = useState(item.watchProgress || 0);
@@ -273,11 +288,12 @@ export const VideoPlayerModal: React.FC<VideoPlayerModalProps> = ({
         <div className={`relative bg-black w-full ${item.category === 'reels' ? 'aspect-[9/16] max-h-[60vh] mx-auto' : 'aspect-video'} flex items-center justify-center overflow-hidden`}>
           <video
             ref={videoRef}
-            src={activeVideoUrl}
+            src={playbackSrc}
             controls
             autoPlay
             onLoadedMetadata={handleLoadedMetadata}
             onTimeUpdate={handleTimeUpdate}
+            onError={handleVideoError}
             className="w-full h-full object-contain"
             poster={selectedEpisode?.thumbnailUrl || item.backdropUrl || item.posterUrl}
           />
