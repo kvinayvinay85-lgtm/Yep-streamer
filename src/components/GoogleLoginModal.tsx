@@ -1,25 +1,33 @@
 import React, { useState } from 'react';
-import { Film, ShieldCheck, CheckCircle2, UserCheck, Lock } from 'lucide-react';
+import { Film, CheckCircle2, Lock, AlertCircle } from 'lucide-react';
+import { AuthService, UserProfile } from '../services/authService';
 
 interface GoogleLoginModalProps {
-  onLoginSuccess: (user: { name: string; email: string; avatar: string }) => void;
+  onLoginSuccess: (user: UserProfile) => void;
 }
 
 export const GoogleLoginModal: React.FC<GoogleLoginModalProps> = ({ onLoginSuccess }) => {
   const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
-  const defaultUser = {
-    name: 'Shadow Funky',
-    email: 'shadowfunkyandmusicsongs@gmail.com',
-    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
-  };
-
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = async () => {
     setLoading(true);
-    setTimeout(() => {
+    setErrorMsg(null);
+    try {
+      const userProfile = await AuthService.signInWithGoogle();
+      onLoginSuccess(userProfile);
+    } catch (err: any) {
+      console.error('Google Auth Error:', err);
+      if (err?.code === 'auth/popup-closed-by-user') {
+        setErrorMsg('Sign in popup was closed. Please try again.');
+      } else if (err?.code === 'auth/cancelled-popup-request') {
+        setErrorMsg('Authentication request cancelled.');
+      } else {
+        setErrorMsg(err?.message || 'Google authentication failed. Please try again.');
+      }
+    } finally {
       setLoading(false);
-      onLoginSuccess(defaultUser);
-    }, 800);
+    }
   };
 
   return (
@@ -32,45 +40,43 @@ export const GoogleLoginModal: React.FC<GoogleLoginModalProps> = ({ onLoginSucce
             <Film className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-2xl font-black text-white">Welcome to YepStreamer</h2>
-          <p className="text-xs text-slate-400">Sign in with Google to access universal media streams</p>
+          <p className="text-xs text-slate-400">Sign in with your personal Google account to start streaming</p>
         </div>
 
-        {/* Account Option Box */}
-        <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
-          <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-            Google Workspace OAuth
+        {/* Informational Feature Box */}
+        <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+          <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider flex items-center justify-between">
+            <span>Official Google OAuth 2.0</span>
+            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
           </div>
-          <div className="flex items-center gap-3">
-            <img
-              src={defaultUser.avatar}
-              alt={defaultUser.name}
-              className="w-10 h-10 rounded-full object-cover border border-rose-500/50"
-            />
-            <div className="min-w-0 flex-1">
-              <div className="text-sm font-bold text-white truncate flex items-center gap-1.5">
-                {defaultUser.name}
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-              </div>
-              <div className="text-xs text-slate-400 truncate">{defaultUser.email}</div>
-            </div>
-          </div>
+          <p className="text-xs text-slate-300 leading-relaxed">
+            Choose your personal Google account. Your watch history, continue watching, and favorites are kept private to your account.
+          </p>
         </div>
 
-        {/* Google Sign In Button */}
+        {/* Error Alert Box if authentication fails */}
+        {errorMsg && (
+          <div className="p-3.5 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs flex items-center gap-2">
+            <AlertCircle className="w-4 h-4 shrink-0" />
+            <span>{errorMsg}</span>
+          </div>
+        )}
+
+        {/* Official Sign in with Google Button */}
         <button
           onClick={handleGoogleSignIn}
           disabled={loading}
-          className="w-full py-3.5 px-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-sm flex items-center justify-center gap-3 shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98]"
+          className="w-full py-3.5 px-4 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-sm flex items-center justify-center gap-3 shadow-xl transition-all hover:scale-[1.02] active:scale-[0.98] disabled:opacity-75 disabled:cursor-not-allowed"
         >
           {loading ? (
-            <span className="flex items-center gap-2 text-slate-700">
-              <span className="w-4 h-4 border-2 border-slate-700 border-t-transparent rounded-full animate-spin" />
-              Signing in with Google...
+            <span className="flex items-center gap-2 text-slate-800">
+              <span className="w-4 h-4 border-2 border-slate-800 border-t-transparent rounded-full animate-spin" />
+              Connecting to Google OAuth...
             </span>
           ) : (
             <>
               {/* Google G Icon */}
-              <svg className="w-5 h-5" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -88,7 +94,7 @@ export const GoogleLoginModal: React.FC<GoogleLoginModalProps> = ({ onLoginSucce
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"
                 />
               </svg>
-              <span>Continue as {defaultUser.name}</span>
+              <span>Continue with Google Account</span>
             </>
           )}
         </button>
@@ -97,7 +103,7 @@ export const GoogleLoginModal: React.FC<GoogleLoginModalProps> = ({ onLoginSucce
         <div className="pt-2 text-center text-[11px] text-slate-500 space-y-1">
           <p className="flex items-center justify-center gap-1 font-semibold text-slate-400">
             <Lock className="w-3 h-3 text-emerald-400" />
-            Protected by Google Identity Services
+            Protected by Official Google OAuth 2.0
           </p>
           <p>By continuing, you agree to YepStreamer Terms of Service & Privacy Policy.</p>
         </div>
@@ -106,3 +112,4 @@ export const GoogleLoginModal: React.FC<GoogleLoginModalProps> = ({ onLoginSucce
     </div>
   );
 };
+

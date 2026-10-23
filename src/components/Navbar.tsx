@@ -3,6 +3,8 @@ import { Film, Search, Bookmark, ShieldCheck, Menu, X, Tv, Video, Clapperboard, 
 import { CategoryType, MediaItem } from '../types';
 import { StorageService } from '../services/storageService';
 
+import { UserProfile } from '../services/authService';
+
 interface NavbarProps {
   currentCategory: CategoryType | 'all' | 'watchlist';
   onSelectCategory: (cat: CategoryType | 'all' | 'watchlist') => void;
@@ -13,6 +15,8 @@ interface NavbarProps {
   isAdminLoggedIn: boolean;
   mediaList?: MediaItem[];
   onSelectMedia?: (item: MediaItem) => void;
+  googleUser?: UserProfile | null;
+  onLogoutGoogle?: () => void;
 }
 
 export const Navbar: React.FC<NavbarProps> = ({
@@ -24,8 +28,11 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenAdmin,
   isAdminLoggedIn,
   mediaList = [],
-  onSelectMedia
+  onSelectMedia,
+  googleUser,
+  onLogoutGoogle
 }) => {
+  const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [isSearchFocused, setIsSearchFocused] = useState(false);
@@ -491,6 +498,59 @@ export const Navbar: React.FC<NavbarProps> = ({
               </span>
             )}
           </button>
+
+          {/* User Account Profile Badge & Logout */}
+          {googleUser && (
+            <div className="relative">
+              <button
+                onClick={() => setUserDropdownOpen(!userDropdownOpen)}
+                className="flex items-center gap-2 p-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-800 transition-all"
+                title={googleUser.displayName}
+              >
+                <img
+                  src={googleUser.photoURL}
+                  alt={googleUser.displayName}
+                  className="w-7 h-7 rounded-lg object-cover ring-2 ring-rose-500/50"
+                />
+                <span className="hidden md:inline text-xs font-bold text-slate-200 max-w-[100px] truncate">
+                  {googleUser.displayName}
+                </span>
+              </button>
+
+              {userDropdownOpen && (
+                <div className="absolute right-0 top-full mt-2 w-56 bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden z-50 p-3 space-y-2">
+                  <div className="flex items-center gap-2.5 border-b border-slate-800 pb-2.5">
+                    <img
+                      src={googleUser.photoURL}
+                      alt={googleUser.displayName}
+                      className="w-9 h-9 rounded-xl object-cover ring-2 ring-rose-500"
+                    />
+                    <div className="min-w-0 flex-1">
+                      <div className="text-xs font-bold text-white truncate">{googleUser.displayName}</div>
+                      <div className="text-[10px] text-slate-400 truncate">{googleUser.email}</div>
+                    </div>
+                  </div>
+
+                  <div className="text-[10px] text-emerald-400 font-bold px-2 py-1 rounded bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-between">
+                    <span>Google Account Signed In</span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  </div>
+
+                  {onLogoutGoogle && (
+                    <button
+                      onClick={() => {
+                        setUserDropdownOpen(false);
+                        onLogoutGoogle();
+                      }}
+                      className="w-full py-2 px-3 rounded-xl bg-rose-600/20 hover:bg-rose-600/30 text-rose-400 font-bold text-xs flex items-center justify-center gap-2 transition-colors border border-rose-500/30"
+                    >
+                      <span>Sign Out Google</span>
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          )}
 
           {/* Admin Portal Button */}
           <button

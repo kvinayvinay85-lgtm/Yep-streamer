@@ -23,18 +23,13 @@ import { MobileBottomNav } from './components/MobileBottomNav';
 import { StartupIntro } from './components/StartupIntro';
 import { GoogleLoginModal } from './components/GoogleLoginModal';
 
+import { AuthService, UserProfile } from './services/authService';
+
 export default function App() {
   const [showIntro, setShowIntro] = useState(() => {
     return !sessionStorage.getItem('yep_intro_seen');
   });
-  const [googleUser, setGoogleUser] = useState<{ name: string; email: string; avatar: string } | null>(() => {
-    try {
-      const stored = localStorage.getItem('yep_streamer_google_user_v1');
-      return stored ? JSON.parse(stored) : null;
-    } catch {
-      return null;
-    }
-  });
+  const [googleUser, setGoogleUser] = useState<UserProfile | null>(null);
 
   const [mediaList, setMediaList] = useState<MediaItem[]>([]);
   const [watchlist, setWatchlist] = useState<string[]>([]);
@@ -51,6 +46,13 @@ export default function App() {
   useEffect(() => {
     setMediaList(StorageService.getMedia());
     setWatchlist(StorageService.getWatchlist());
+
+    // Listen to Firebase Auth state for Google Account sign in / sign out
+    const unsubscribe = AuthService.initAuthListener((profile) => {
+      setGoogleUser(profile);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   const handleToggleWatchlist = (id: string) => {
@@ -169,6 +171,11 @@ export default function App() {
         isAdminLoggedIn={isAdminMode}
         mediaList={mediaList}
         onSelectMedia={(item) => setPlayingItem(item)}
+        googleUser={googleUser}
+        onLogoutGoogle={async () => {
+          await AuthService.logout();
+          setGoogleUser(null);
+        }}
       />
 
       {/* Main Public Website Content */}
