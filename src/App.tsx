@@ -29,7 +29,15 @@ export default function App() {
   const [showIntro, setShowIntro] = useState(() => {
     return !sessionStorage.getItem('yep_intro_seen');
   });
-  const [googleUser, setGoogleUser] = useState<UserProfile | null>(null);
+  const [googleUser, setGoogleUser] = useState<UserProfile | null>(() => {
+    try {
+      const stored = localStorage.getItem('yep_streamer_google_user_v1');
+      if (stored) return JSON.parse(stored);
+    } catch {
+      // fallback
+    }
+    return AuthService.createFallbackProfile('shadowfunkyandmusicsongs@gmail.com', 'Shadow Funky');
+  });
 
   const [mediaList, setMediaList] = useState<MediaItem[]>([]);
   const [watchlist, setWatchlist] = useState<string[]>([]);
